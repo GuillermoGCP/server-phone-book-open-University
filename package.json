@@ -1,0 +1,11 @@
+{
+  "name": "server-phone-book-open-university",
+  "version": "1.0.0",
+  "description": "server for exercises in course fullStack in Helsinski University",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Guillermo Cerviño Porto",
+  "license": "ISC"
+}
