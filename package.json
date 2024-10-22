@@ -1,11 +1,20 @@
 {
-  "name": "server-phone-book-open-university",
-  "version": "1.0.0",
-  "description": "server for exercises in course fullStack in Helsinski University",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Guillermo Cerviño Porto",
-  "license": "ISC"
+    "name": "server-phone-book-open-university",
+    "version": "1.0.0",
+    "description": "server for exercises in course fullStack in Helsinski University",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js",
+        "dev": "nodemon index.js"
+    },
+    "author": "Guillermo Cerviño Porto",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "express": "^4.21.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.7"
+    }
 }
