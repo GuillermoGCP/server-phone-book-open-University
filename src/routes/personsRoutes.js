@@ -1,7 +1,8 @@
 const express = require('express')
-const notes = require('../controllers/persons.js')
+const { persons, info } = require('../controllers/index.js')
 const router = express.Router()
 
-router.get('/api/persons', notes)
+router.get('/api/persons', persons)
+router.get('/info', info)
 
 module.exports = router
