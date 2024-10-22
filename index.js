@@ -3,6 +3,7 @@ const dotenv = require('dotenv/config')
 const { personsRoutes } = require('./src/routes/index.js')
 
 const app = express()
+app.use(express.json())
 
 //Routes:
 app.use(personsRoutes)

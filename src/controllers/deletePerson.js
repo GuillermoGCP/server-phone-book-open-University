@@ -11,7 +11,7 @@ const deletePerson = async (req, res) => {
     const remainingPeople = storedPersons.filter(
         (person) => person.id !== parseInt(id)
     )
-    // Save the remaining persons to the file:
+    // Save new data:
     await fs.writeFile(
         './src/db/persons.json',
         JSON.stringify(remainingPeople, null, 2)
