@@ -5,7 +5,17 @@ const { personsRoutes } = require('./src/routes/index.js')
 
 const app = express()
 app.use(express.json())
-app.use(morgan('tiny'))
+app.use(express.urlencoded({ extended: true }))
+
+// Middleware: Morgan for logging requests
+morgan.token('body', (req) => {
+    return req.method === 'POST' ? JSON.stringify(req.body) : ''
+})
+app.use(
+    morgan(
+        ':method :url :status :res[content-length] - :response-time ms :body'
+    )
+)
 
 //Routes:
 app.use(personsRoutes)
