@@ -1,8 +1,10 @@
 const express = require('express')
+const path = require('path')
 const morgan = require('morgan')
-const dotenv = require('dotenv/config')
+const dotenv = require('dotenv')
 const { personsRoutes } = require('./src/routes/index.js')
 
+dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -19,6 +21,7 @@ app.use(
 
 //Routes:
 app.use(personsRoutes)
+app.use(express.static(path.join(__dirname, 'dist')))
 
 //Server:
 app.listen(process.env.PORT, () =>

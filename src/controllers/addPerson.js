@@ -22,12 +22,12 @@ const addPerson = async (req, res) => {
     const id = generateRandomId()
 
     //Update data:
-    const newData = [...storedPersons, { ...req.body, id: id }]
+    const newData = [...storedPersons, { ...req.body, id: id.toString() }]
     await fs.writeFile(
         './src/db/persons.json',
         JSON.stringify(newData, null, 2)
     )
 
-    res.send({ data: { ...req.body, id: id } })
+    res.send([{ ...req.body, id: id }])
 }
 module.exports = addPerson

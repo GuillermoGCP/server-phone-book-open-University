@@ -12,6 +12,6 @@ router.get('/api/persons', persons)
 router.get('/api/persons/:id', person)
 router.delete('/api/persons/:id', deletePerson)
 router.post('/api/persons', addPerson)
-router.get('/info', info)
+router.get('/api/info', info)
 
 module.exports = router
