@@ -18,10 +18,10 @@ app.use(
         ':method :url :status :res[content-length] - :response-time ms :body'
     )
 )
+app.use(express.static(path.join(__dirname, 'dist')))
 
 //Routes:
 app.use(personsRoutes)
-app.use(express.static(path.join(__dirname, 'dist')))
 
 //Server:
 app.listen(process.env.PORT, () =>
