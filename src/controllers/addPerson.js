@@ -1,5 +1,6 @@
 const storedPersons = require('../db/persons.json')
 const fs = require('fs/promises')
+const generateRandomId = require('../utils/generateRandomId')
 
 const addPerson = async (req, res) => {
     const { name, number } = req.body
@@ -16,9 +17,6 @@ const addPerson = async (req, res) => {
     }
 
     // Generate random ID:
-    const generateRandomId = () => {
-        return Math.floor(Math.random() * 1000000)
-    }
     const id = generateRandomId()
 
     //Update data:

@@ -3,11 +3,15 @@ const path = require('path')
 const morgan = require('morgan')
 const dotenv = require('dotenv')
 const { personsRoutes } = require('./src/routes/index.js')
+// const connectDB = require('./src/db/config.js')
 
 dotenv.config()
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+// // Connect to MongoDB
+// connectDB()
 
 // Middleware: Morgan for logging requests
 morgan.token('body', (req) => {
