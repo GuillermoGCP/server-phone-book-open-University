@@ -1,5 +1,4 @@
-const storedPersons = require('../db/persons.json')
-const fs = require('fs/promises')
+const Person = require('../db/models/PersonsModel.js')
 
 const addPerson = async (req, res) => {
     const { name, number } = req.body
@@ -11,17 +10,13 @@ const addPerson = async (req, res) => {
         return res.status(400).send({ error: `${missingField} are required.` })
     }
 
-    if (storedPersons.some((person) => person.name === name)) {
-        return res.status(400).send({ error: 'name must be unique' })
-    }
-
-    //Update data:
-    const newData = [...storedPersons, { ...req.body }]
-    await fs.writeFile(
-        './src/db/persons.json',
-        JSON.stringify(newData, null, 2)
-    )
-
-    res.send([{ ...req.body }])
+    Person.findOne({ name: name }).then((person) => {
+        if (person)
+            return res.status(400).send({ error: 'name must be unique' })
+        else {
+            const personTosave = new Person(req.body)
+            personTosave.save().then((person) => res.json(person))
+        }
+    })
 }
 module.exports = addPerson
