@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-const connectDB = async ({ uri }) => {
+const connectDB = async (uri) => {
     try {
-        const conn = await mongoose.connect(uri || process.env.MONGO_URI, {
+        const conn = await mongoose.connect(uri, {
             dbName: 'Open-University',
         })
         console.log(`MongoDB connected: ${conn.connection.host}`)

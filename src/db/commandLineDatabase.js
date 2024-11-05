@@ -1,9 +1,10 @@
-require('dotenv').config()
-const connectDB = require('./src/db/config')
-const Person = require('./src/db/models/PersonsModel')
-const generateRandomId = require('./src/utils/generateRandomId')
+const dotenv = require('dotenv')
+const connectDB = require('./config.js')
+const Person = require('./models/PersonsModel.js')
+const generateRandomId = require('../utils/generateRandomId.js')
 const mongoose = require('mongoose')
 
+dotenv.config()
 const arg = process.argv.slice(2)
 const id = generateRandomId()
 

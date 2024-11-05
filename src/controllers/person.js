@@ -1,8 +1,7 @@
-const storedPersons = require('../db/persons.json')
+const Person = require('../db/models/PersonsModel.js')
+
 const person = (req, res) => {
     const { id } = req.params
-    const person = storedPersons.find((person) => person.id === parseInt(id))
-    if (!person) return res.status(404).send(`<p>Person not found</p>`)
-    res.send({ data: person })
+    Person.findById(id).then((person) => res.json(person))
 }
 module.exports = person

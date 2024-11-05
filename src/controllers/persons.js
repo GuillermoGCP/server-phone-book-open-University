@@ -1,5 +1,6 @@
-const storedPersons = require('../db/persons.json')
+const Person = require('../db/models/PersonsModel.js')
+
 const persons = (_req, res) => {
-    res.send(storedPersons)
+    Person.find({}).then((persons) => res.json(persons))
 }
 module.exports = persons

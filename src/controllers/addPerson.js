@@ -1,6 +1,5 @@
 const storedPersons = require('../db/persons.json')
 const fs = require('fs/promises')
-const generateRandomId = require('../utils/generateRandomId')
 
 const addPerson = async (req, res) => {
     const { name, number } = req.body
@@ -16,16 +15,13 @@ const addPerson = async (req, res) => {
         return res.status(400).send({ error: 'name must be unique' })
     }
 
-    // Generate random ID:
-    const id = generateRandomId()
-
     //Update data:
-    const newData = [...storedPersons, { ...req.body, id: id.toString() }]
+    const newData = [...storedPersons, { ...req.body }]
     await fs.writeFile(
         './src/db/persons.json',
         JSON.stringify(newData, null, 2)
     )
 
-    res.send([{ ...req.body, id: id }])
+    res.send([{ ...req.body }])
 }
 module.exports = addPerson
