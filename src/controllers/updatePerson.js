@@ -3,7 +3,7 @@ const Person = require('../db/models/PersonsModel.js')
 const updatePerson = async (req, res, next) => {
     const { id } = req.params
 
-    Person.findByIdAndUpdate(id, req.body)
+    Person.findByIdAndUpdate(id, req.body, { new: true })
         .then((response) => {
             res.json({
                 id: response._id.toString(),
