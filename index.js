@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const dotenv = require('dotenv')
 const { personsRoutes } = require('./src/routes/index.js')
 const connectDB = require('./src/db/config.js')
+const errorHandler = require('./src/middlewares/errorHandler.js')
 
 dotenv.config()
 const app = express()
@@ -26,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'dist')))
 
 //Routes:
 app.use(personsRoutes)
+
+// Error Handling middleware
+app.use(errorHandler)
 
 //Server:
 app.listen(process.env.PORT, () =>

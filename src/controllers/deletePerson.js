@@ -1,6 +1,6 @@
 const Person = require('../db/models/PersonsModel.js')
 
-const deletePerson = async (req, res) => {
+const deletePerson = async (req, res, next) => {
     const { id } = req.params
 
     Person.findByIdAndDelete(id)
@@ -15,8 +15,7 @@ const deletePerson = async (req, res) => {
             }
         })
         .catch((error) => {
-            console.error('Error al eliminar la persona:', error)
-            res.status(500).send('Error deleting person')
+            next(error)
         })
 }
 module.exports = deletePerson
