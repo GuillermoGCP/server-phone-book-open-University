@@ -16,7 +16,10 @@ const addPerson = async (req, res, next) => {
                 return res.status(400).send({ error: 'name must be unique' })
             else {
                 const personTosave = new Person(req.body)
-                personTosave.save().then((person) => res.json(person))
+                personTosave
+                    .save()
+                    .then((person) => res.json(person))
+                    .catch((error) => next(error))
             }
         })
         .catch((error) => next(error))

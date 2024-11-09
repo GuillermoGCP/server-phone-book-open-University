@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const PersonSchema = new Schema({
     id: String,
-    name: String,
+    name: { type: String, minLength: 3 },
     number: String,
 })
 
