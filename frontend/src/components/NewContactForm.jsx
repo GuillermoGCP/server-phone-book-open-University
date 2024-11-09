@@ -41,33 +41,36 @@ const NewContactForm = ({
                         setNewName('')
                         setNewNumber('')
                         setSuccessMessage(`${newName} updated`)
-                        setInterval(() => {
+                        setTimeout(() => {
                             setSuccessMessage(null)
                         }, 3000)
                     })
                     .catch((error) => {
-                        if (error.status === 404) {
+                        if (error.response?.status === 404) {
                             console.log(error.message)
-
                             setErrorMessage(
                                 `Information of ${
                                     persons.find(
                                         (person) => person.name === newName
                                     ).name
-                                } has been removed from server`
+                                } may have been removed from the server`
                             )
-                            setInterval(() => {
+                            setTimeout(() => {
                                 setErrorMessage(null)
                             }, 5000)
                         } else {
-                            console.log(error.message)
+                            console.log(error.response?.data?.error)
                             setErrorMessage(
-                                'Error updating number to contact:',
-                                persons.find(
-                                    (person) => person.name === newName
-                                ).name
+                                `Error updating number to contact: ${
+                                    persons.find(
+                                        (person) => person.name === newName
+                                    ).name
+                                }. ${
+                                    error.response?.data?.error ||
+                                    'Unexpected error'
+                                }`
                             )
-                            setInterval(() => {
+                            setTimeout(() => {
                                 setErrorMessage(null)
                             }, 5000)
                         }
@@ -83,12 +86,19 @@ const NewContactForm = ({
                 setNewName('')
                 setNewNumber('')
                 setSuccessMessage(`${newName} added to book`)
-                setInterval(() => {
+                setTimeout(() => {
                     setSuccessMessage(null)
                 }, 5000)
             })
             .catch((error) => {
-                console.error('Error adding data to server:', error)
+                console.error(
+                    'Error adding data to server:',
+                    error.response.data.error
+                )
+                setErrorMessage(error.response.data.error)
+                setTimeout(() => {
+                    setErrorMessage(null)
+                }, 5000)
             })
     }
     return (

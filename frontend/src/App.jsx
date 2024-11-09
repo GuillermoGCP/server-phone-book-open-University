@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Filter from './components/Filter'
-import NewContactForm from './components/newContactForm'
+import NewContactForm from './components/NewContactForm'
 import Persons from './components/Persons'
 import personsService from './services/personsService'
 import Notification from './components/Notification'
@@ -16,7 +16,6 @@ const App = () => {
     const filteredPersons = persons.filter((person) =>
         person.name.toLowerCase().includes(filter.toLowerCase())
     )
-    console.log('data', persons)
     useEffect(() => {
         personsService
             .getAll()
