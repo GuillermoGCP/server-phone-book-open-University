@@ -1,20 +1,20 @@
 const Person = require('../db/models/PersonsModel.js')
 
 const updatePerson = async (req, res, next) => {
-    const { id } = req.params
+  const { id } = req.params
 
-    Person.findByIdAndUpdate(id, req.body, {
-        new: true,
-        runValidators: true,
-        context: 'query',
+  Person.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+    context: 'query',
+  })
+    .then((response) => {
+      res.json({
+        id: response._id.toString(),
+        number: response.number,
+        name: response.name,
+      })
     })
-        .then((response) => {
-            res.json({
-                id: response._id.toString(),
-                number: response.number,
-                name: response.name,
-            })
-        })
-        .catch((error) => next(error))
+    .catch((error) => next(error))
 }
 module.exports = updatePerson

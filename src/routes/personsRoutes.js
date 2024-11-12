@@ -1,11 +1,11 @@
 const express = require('express')
 const {
-    persons,
-    info,
-    person,
-    deletePerson,
-    addPerson,
-    updatePerson,
+  persons,
+  info,
+  person,
+  deletePerson,
+  addPerson,
+  updatePerson,
 } = require('../controllers/index.js')
 const router = express.Router()
 

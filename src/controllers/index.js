@@ -6,10 +6,10 @@ const addPerson = require('./addPerson.js')
 const updatePerson = require('./updatePerson.js')
 
 module.exports = {
-    info,
-    persons,
-    person,
-    deletePerson,
-    addPerson,
-    updatePerson,
+  info,
+  persons,
+  person,
+  deletePerson,
+  addPerson,
+  updatePerson,
 }
